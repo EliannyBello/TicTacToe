@@ -1,33 +1,28 @@
-import React, { Component } from 'react';
-import Tile from './Tile'; 
-import Announcement from './Announcement';
+import React, { useState } from 'react';
+import Game from './Game';
+import Modal from './Modal';
+import AudioComponent from './audio';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      gameBoard: ['', '', '', '', '', '', '', '', ''],
-      currentPlayer: 'X',
-      winner: null,
-    };
-  }
-
-  handleClick(i) {
-    const { gameBoard, currentPlayer, winner } = this.state;
-    if (gameBoard[i] === '' && !winner) {
-      const newGameBoard = gameBoard.slice();
-      newGameBoard[i] = currentPlayer;
-      this.setState({
-        gameBoard: newGameBoard,
-        currentPlayer: currentPlayer === 'X' ? 'O' : 'X',
-        winner: this.calculateWinner(newGameBoard),
-      });
-    }
-  }
-
+const App = () => {
+  const [player, setPlayer] = useState('X');
+  const [table, setTable] = useState([null, null, null, null, null, null, null, null, null]);
+  const win = calculateWinnner();
   
+  const onClickCell = (index) => {
+    if (table[index] === null) {
+      const newTable = table.slice();
+      newTable[index] = player;
+      setTable(newTable);
+      setPlayer(player === 'X' ? 'O' : 'X');
+    }
+  };
 
-  calculateWinner(gameBoard) {
+  const onclickReplay = () => {
+    setTable([null, null, null, null, null, null, null, null, null]);
+    setPlayer('X');
+  };
+
+  function calculateWinnner() {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -36,45 +31,37 @@ class App extends Component {
       [1, 4, 7],
       [2, 5, 8],
       [0, 4, 8],
-      [2, 4, 6],
+      [2, 4, 6]
     ];
+
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-        return gameBoard[a];
+      if (table[a] && table[a] === table[b] && table[a] === table[c]) {
+        return table[a];
       }
     }
+
+    let isDraw = true;
+    for (let i = 0; i < table.length; i++) {
+      if (table[i] === null) {
+        isDraw = false;
+        break;
+      }
+    }
+    if (isDraw) return 'La Vieja';
+
     return null;
   }
 
-  resetGame() {
-    this.setState({
-      gameBoard: ['', '', '', '', '', '', '', '', ''],
-      currentPlayer: 'X',
-      winner: null,
-    });
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <div className="menu">
-          <h1>Tic Tac Toe in React</h1>
-          <Announcement winner={this.state.winner} currentPlayer={this.state.currentPlayer} />
-          <button onClick={() => this.resetGame()}>Resetear</button>
-        </div>
-        <div className="board">
-          {this.state.gameBoard.map((value, i) => (
-            <Tile
-              key={i}
-              value={value}
-              onClick={() => this.handleClick(i)}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
+  return (
+    <>
+      {!!win && <Modal playerWin={win} onclickReplay={onclickReplay}/>}
+      <h1>¡Welcome to the Jungle!</h1>
+      <h3>Turno de: {player}</h3>
+      <Game table={table} onClickCell={onClickCell} />
+      <AudioComponent/>
+    </>
+  );
+};
 
 export default App;

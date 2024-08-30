@@ -1,40 +1,123 @@
-body{
-    background-color: rgba(0, 0, 0, 0.262);
-    align-items: center;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  background-color: #000000; 
+  color: #ffffff; 
+  font-family: 'Arial', sans-serif; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 60px;
-  }
-  
-  .menu {
-    margin-bottom: 20px;
-    align-items: center;
-  }
-  
-  .board {
-    display: grid;
-    grid-template-columns: repeat(3, 60px);
-    gap: 5px;
-  }
-  
-  .tile {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    text-align: center;
-  }
-  
-  .announcement {
-    margin: 10px;
-    font-size: 18px;
-  }
-  
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    align-items: center;
-  }
-  
+
+h1 {
+  font-family: 'Press Start 2P';
+  color: #ff00ff;
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #ffff00, 
+}
+
+h3 {
+  font-family: 'Press Start 2P'; 
+  color: #ffff00;
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #ff00ff,
+}
+
+.Game {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  justify-content: center;
+}
+
+.game-cells {
+  border-style: groove;
+  border-color: #ffffff;
+  background-color: #ff00ff; 
+  color: #ffff00; 
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  font-family: 'Press Start 2P';
+  text-shadow: 2px 2px 0 #ff69b4,
+}
+
+.game-cells:hover {
+  transform: scale(1.1);
+  background-color: #ff69b4; 
+}
+
+.victoryScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.victoryScreen-box {
+  background-color: #ff00ff; 
+  color: #ffff00; 
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border-style: groove;
+  border-color: #ffffff;
+}
+
+.victory-title {
+  font-family: 'Press Start 2P';
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #ffff00, 
+}
+
+.victory-player {
+  font-family: 'Press Start 2P'; 
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #ffff00, 
+}
+
+.victory-replay {
+  font-family: 'Press Start 2P';
+  background-color: #ffff00; 
+  color: #ff00ff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #ff69b4, 
+}
+
+.victory-replay:hover {
+  transform: scale(1.1);
+  background-color: #ff69b4; 
+}
+button {
+  border-style: groove;
+  border-color: #ffffff;
+}
