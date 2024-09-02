@@ -56,10 +56,10 @@ const App = () => {
   return (
     <>
       {!!win && <Modal playerWin={win} onclickReplay={onclickReplay}/>}
-      <h1>¡Welcome to the Jungle!</h1>
+      <h1>¡Welcome to TicTacToe!</h1>
       <h3>Turno de: {player}</h3>
       <Game table={table} onClickCell={onClickCell} />
-      <AudioComponent/>
+      {/* <AudioComponent/> */}
     </>
   );
 };
