@@ -1,4 +1,4 @@
-SE ENCUENTRA DISPONIBLE EN [Click aquí(https://lista-de-contactos-dgi4.vercel.app/)]
+SE ENCUENTRA DISPONIBLE EN [Click aquí](https://lista-de-contactos-dgi4.vercel.app/)
 
 # Hello World with React boilerplate
 
